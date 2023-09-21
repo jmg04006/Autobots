@@ -1,14 +1,16 @@
-import time
-from adafruit_servokit import ServoKit
+from gpiozero import AngularServo
+from time import sleep
 
+servo = AngularServo(17, min_angle=-90, max_angle=90)
 
-kit = ServoKit(channels=16, address=0x40)
-kit.servo[0].angle = 180  # left bound
-print("left bound: 180 deg")
-time.sleep(2)
-kit.servo[0].angle = 0  # right bound
-print("right bound: 0 deg")
-time.sleep(2)
-kit.servo[0].angle = 90
-print("middle: 90 deg")
-time.sleep(2)
+while True:
+    servo.angle = -90
+    sleep(2)
+    servo.angle = -45
+    sleep(2)
+    servo.angle = 0
+    sleep(2)
+    servo.angle = 45
+    sleep(2)
+    servo.angle = 90
+    sleep(2)
