@@ -51,7 +51,7 @@ frame_counts = 0
 ave_frame_rate = 0.
 
 try:
-    kit.angle = 90 #Starting angle
+    kit.angle = 0 #Starting angle
 
     while True:
         ret, frame = cap.read()
