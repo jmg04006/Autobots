@@ -23,7 +23,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 config_path = os.path.join(sys.path[0], "config.json")
 f = open(config_path)
 data = json.load(f)
-steering_trim = -1 * data['steering_trim']
+steering_trim = data['steering_trim']
 throttle_lim = data['throttle_lim']
 # init servo controller
 kit = AngularServo(17, min_angle= 0, max_angle=180)
