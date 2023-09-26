@@ -27,7 +27,7 @@ data = json.load(f)
 steering_trim = data['steering_trim']
 throttle_lim = data['throttle_lim']
 # init servo controller
-kit = AngularServo(17, min_angle=-90, max_angle=90)
+kit = AngularServo(17, min_angle=0, max_angle=180)
 
 # init controller
 pygame.display.init()
