@@ -1,15 +1,20 @@
 from gpiozero import AngularServo
 from time import sleep
 
-servo = AngularServo(17, min_angle=-130, max_angle=130)
+servo = AngularServo(17, min_angle=0, max_angle=180)
 
-i = -130
+i = 0
 
-while True:
-    servo.angle = i
-    print (i)
-    sleep(3)
-    i += 5
-    if (i > 130):
-        break
+for ang in range(181):
+    servo.angle = ang
+    print (ang)
+    sleep(1)
+
+# while True:
+#     servo.angle = i
+#     print (i)
+#     sleep(1)
+#     i += 5
+#     if (i > 130):
+#         break
 
