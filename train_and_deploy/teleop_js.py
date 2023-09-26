@@ -27,7 +27,7 @@ data = json.load(f)
 steering_trim = data['steering_trim']
 throttle_lim = data['throttle_lim']
 # init servo controller
-kit = AngularServo(17, min_angle=0, max_angle=180)
+kit = AngularServo(17, min_angle=-120, max_angle=30)
 
 # init controller
 pygame.display.init()
@@ -65,11 +65,11 @@ try:
                     head_led.toggle()
                     tail_led.toggle()
         motor.drive(throttle * throttle_lim)  # apply throttle limit
-        ang = 90 * (1 + steer) + steering_trim
-        if ang > 180:
-            ang = 180
-        elif ang < 0:
-            ang = 0
+        ang = 45 * (1 + steer) + steering_trim
+        if ang > 30:
+            ang = 30
+        elif ang < -120:
+            ang = -120
         kit.angle = ang
         action = [steer, throttle]
         print(f"action: {action}")
