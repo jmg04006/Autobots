@@ -51,8 +51,9 @@ frame_counts = 0
 ave_frame_rate = 0.
 
 try:
+    kit.angle = 90 #Starting angle
+
     while True:
-        kit.angle = 90 #Starting angle
         ret, frame = cap.read()
         for e in pygame.event.get():
             if e.type == pygame.JOYAXISMOTION:
