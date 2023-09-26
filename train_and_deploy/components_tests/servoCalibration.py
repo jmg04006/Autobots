@@ -9,4 +9,6 @@ while True:
     i += i + 5
     print (i)
     sleep(3)
+    if (i > 100):
+        break
 
