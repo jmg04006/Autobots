@@ -6,9 +6,9 @@ servo = AngularServo(17, min_angle=-100, max_angle=100)
 while True:
     i = -100
     servo.angle = i
-    i += i + 5
     print (i)
     sleep(3)
+    i += 5
     if (i > 100):
         break
 
