@@ -3,8 +3,9 @@ from time import sleep
 
 servo = AngularServo(17, min_angle=-100, max_angle=100)
 
+i = -100
+
 while True:
-    i = -100
     servo.angle = i
     print (i)
     sleep(3)
