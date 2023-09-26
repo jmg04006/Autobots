@@ -6,14 +6,13 @@
 import sys
 import os
 import cv2 as cv
-from adafruit_servokit import ServoKit
 import motor
 import pygame
 from gpiozero import LED
 import json
 import csv
 from datetime import datetime
-
+from gpiozero import LED, AngularServo
 from time import time
 
 
@@ -27,8 +26,7 @@ data = json.load(f)
 steering_trim = -1 * data['steering_trim']
 throttle_lim = data['throttle_lim']
 # init servo controller
-kit = ServoKit(channels=16)
-servo = kit.servo[0]
+kit = AngularServo(17, min_angle= 0, max_angle=180)
 # init LEDs
 head_led = LED(16)
 tail_led = LED(12)
@@ -92,7 +90,7 @@ try:
             ang = 180
         elif ang < 0:
             ang = 0
-        servo.angle = ang
+        kit.angle = ang
         action = [steer, throttle]
         #print(f"action: {action}")
         if is_recording:
