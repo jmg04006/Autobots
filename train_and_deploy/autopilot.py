@@ -6,9 +6,8 @@
 import sys
 import os
 import cv2 as cv
-from adafruit_servokit import ServoKit
+from gpiozero import LED, AngularServo
 import motor
-from gpiozero import LED
 import json
 
 from time import time
@@ -26,13 +25,12 @@ data = json.load(f)
 steering_trim = -1 * data['steering_trim']
 throttle_lim = data['throttle_lim']
 # init servo controller
-kit = ServoKit(channels=16)
-servo = kit.servo[0]
+kit = AngularServo(17, min_angle= 0, max_angle=180)
 # init LEDs
 head_led = LED(16)
 tail_led = LED(12)
 
-model_path = os.path.join(sys.path[0], 'models', 'MODEL.pth')
+model_path = os.path.join(sys.path[0], 'models', 'DonkeyNet_15_epochs_lr_1e_3.pth')
 to_tensor = transforms.ToTensor()
 model = cnn_network.DonkeyNet()
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
@@ -82,7 +80,7 @@ try:
             ang = 180
         elif ang < 0:
             ang = 0
-        servo.angle = ang
+        kit.angle = ang
         action = [steer, throttle]
         print(f"action: {action}")
         # monitor frame rate
