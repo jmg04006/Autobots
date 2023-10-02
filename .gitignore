@@ -5,3 +5,4 @@ images
 *.csv
 *.gz
 *.png
+data/
