@@ -98,8 +98,8 @@ def test(dataloader, model, loss_fn):
 if __name__ == '__main__':
 
     # Create a dataset
-    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2023_10_02_15_57/labels.csv"  # the name of the csv file
-    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2023_10_02_15_57/images"  # the name of the folder with all the images in it
+    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2023_10_10_15_44/labels.csv"  # the name of the csv file
+    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2023_10_10_15_44/images"  # the name of the folder with all the images in it
     collected_data = CustomImageDataset(annotations_file, img_dir)
     print("data length: ", len(collected_data))
 
@@ -159,10 +159,11 @@ if __name__ == '__main__':
     axs.set_xlabel('Training Epoch')
     axs.set_title('DonkeyNet 15 Epochs lr=1e-3')
     axs.legend()
-    fig.savefig('/home/robotics-j/Autobots/train_and_deploy/data/2023_10_02_15_57/DonkeyNet_15_epochs_lr_1e_3.png')
+    # fig.savefig('/home/robotics-j/Autobots/train_and_deploy/data/2023_10_10_15_44/DonkeyNet_15_epochs_lr_1e_3.png')
+    fig.savefig(os.path.join(os.path.dirname(img_dir),'DonkeyNet_15_epochs_lr_1e_3.png'))
 
     # Save the model
-    torch.save(model.state_dict(), "/home/robotics-j/Autobots/train_and_deploy/data/2023_10_02_15_57/DonkeyNet_15_epochs_lr_1e_3.pth")
+    torch.save(model.state_dict(), os.path.join(os.path.dirname(img_dir),"DonkeyNet_15_epochs_lr_1e_3.pth"))
 
 
     
