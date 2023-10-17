@@ -42,7 +42,7 @@ try:
                     motor.backward(-throttle)
 
                 if (steer < 0.05 and steer > -0.05):
-                    servo.angle = 0
+                    servo.angle = 45
                 elif (steer > 0.05):
                     servo.angle = steer * 90
                 elif (steer < -0.05):
