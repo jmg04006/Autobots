@@ -14,6 +14,6 @@ js = joystick.Joystick(0)
 while True:
     for e in event.get():
         if e.type == JOYAXISMOTION:
-            print(js.get_axis(1))
+            print(-js.get_axis(1))
     sleep(.5)
 
