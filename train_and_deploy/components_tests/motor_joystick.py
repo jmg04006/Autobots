@@ -26,12 +26,13 @@ try:
         for e in pygame.event.get():
             if e.type == pygame.JOYAXISMOTION:
                 throttle = -js.get_axis(1)  # throttle input: -1: max forward, 1: max backward
-                if (throttle < 0.05 and throttle > -0.05):
-                    motor.stop()
-                elif (throttle > 0.05):
-                    motor.foward(throttle)
-                elif (throttle < -0.05):
-                    motor.backward(throttle)
+                print(throttle)
+                # if (throttle < 0.05 and throttle > -0.05):
+                #     motor.stop()
+                # elif (throttle > 0.05):
+                #     motor.foward(throttle)
+                # elif (throttle < -0.05):
+                #     motor.backward(throttle)
 
     # motor = PhaseEnableMotor(phase=19, enable=26)
     # for i in range(100):
