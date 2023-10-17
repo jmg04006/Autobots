@@ -30,7 +30,7 @@ try:
                 if (throttle < 0.05 and throttle > -0.05):
                     motor.stop()
                 elif (throttle > 0.05):
-                    motor.foward(throttle)
+                    motor.forward(throttle)
                 elif (throttle < -0.05):
                     motor.backward(throttle)
 
