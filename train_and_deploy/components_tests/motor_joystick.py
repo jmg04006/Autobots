@@ -1,7 +1,6 @@
 # import pygame
 from pygame.locals import *
 from pygame import event, display, joystick
-from time import sleep
 
 
 def get_numControllers():
@@ -15,5 +14,3 @@ while True:
     for e in event.get():
         if e.type == JOYAXISMOTION:
             print(e)
-    sleep(.5)
-
