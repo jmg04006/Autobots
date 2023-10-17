@@ -32,7 +32,7 @@ try:
                 elif (throttle > 0.05):
                     motor.forward(throttle)
                 elif (throttle < -0.05):
-                    motor.backward(throttle)
+                    motor.backward(-throttle)
 
     # motor = PhaseEnableMotor(phase=19, enable=26)
     # for i in range(100):
