@@ -18,44 +18,44 @@ js = joystick.Joystick(0)
 
 motor = PhaseEnableMotor(phase=19, enable=26)
 
+while(True):
+    try:
 
-try:
+        if (-js.get_axis(1) < 0.05 or -js.get_axis(1) > -0.05):
+            motor.stop()
+        elif (-js.get_axis(1) > 0.05):
+            motor.foward(100 * -js.get_axis(1))
+        elif (-js.get_axis(1) < -0.05):
+            motor.backward(100*-js.get_axis(1))
 
-    if (-js.get_axis(1) < 0.05 or -js.get_axis(1) > -0.05):
+        # motor = PhaseEnableMotor(phase=19, enable=26)
+        # for i in range(100):
+        #     motor.forward(i*0.01)
+        #     print(f"Forward at {i*0.01}")
+        #     sleep(0.2)
+        # for i in reversed(range(100)):
+        #     motor.forward(i*0.01)
+        #     print(f"Forward at {i*0.01}")
+        #     sleep(0.2)
+        # print("Stop")
+        # motor.stop()
+        # sleep(1)
+        # for i in range(100):
+        #     motor.backward(i*0.01)
+        #     print(f"Backward at {i*0.01}")
+        #     sleep(0.2)
+        # for i in reversed(range(100)):
+        #     motor.backward(i*0.01)
+        #     print(f"Backward at {i*0.01}")
+        #     sleep(0.2)
+    except KeyboardInterrupt:
         motor.stop()
-    elif (-js.get_axis(1) > 0.05):
-        motor.foward(100 * -js.get_axis(1))
-    elif (-js.get_axis(1) < -0.05):
-        motor.backward(100*-js.get_axis(1))
+        motor.close()
+        print("Test interrupted!")
 
-    # motor = PhaseEnableMotor(phase=19, enable=26)
-    # for i in range(100):
-    #     motor.forward(i*0.01)
-    #     print(f"Forward at {i*0.01}")
-    #     sleep(0.2)
-    # for i in reversed(range(100)):
-    #     motor.forward(i*0.01)
-    #     print(f"Forward at {i*0.01}")
-    #     sleep(0.2)
-    # print("Stop")
-    # motor.stop()
-    # sleep(1)
-    # for i in range(100):
-    #     motor.backward(i*0.01)
-    #     print(f"Backward at {i*0.01}")
-    #     sleep(0.2)
-    # for i in reversed(range(100)):
-    #     motor.backward(i*0.01)
-    #     print(f"Backward at {i*0.01}")
-    #     sleep(0.2)
-except KeyboardInterrupt:
     motor.stop()
     motor.close()
-    print("Test interrupted!")
-
-motor.stop()
-motor.close()
-print("Test completed!")
+    print("Test completed!")
 # while True:
 #     for e in event.get():
 #         if e.type == JOYAXISMOTION:
