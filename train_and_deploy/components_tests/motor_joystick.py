@@ -15,6 +15,8 @@ display.init()
 joystick.init()
 print(f"{get_numControllers()} joystick connected")
 js = joystick.Joystick(0)
+pygame.display.init()
+pygame.joystick.init()
 
 motor = PhaseEnableMotor(phase=19, enable=26)
 
