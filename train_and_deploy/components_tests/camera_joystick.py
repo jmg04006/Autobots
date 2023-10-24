@@ -34,6 +34,8 @@ try:
 
     while True:
         ret, frame = cap.read()
+        #Start camera
+        cv2.imshow("Camera", frame)
         for e in pygame.event.get():
             if e.type == pygame.JOYAXISMOTION:
                 throttle = -round((js.get_axis(1)), 2)  # throttle input: -1: max forward, 1: max backward
