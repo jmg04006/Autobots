@@ -108,24 +108,24 @@ try:
                     else:
                         print("Stopping data logging")
                     #print(f"action: {action}")
-            action = [steer, throttle]
-            if is_recording:
-                frame = cv.resize(frame, (120, 160))
-                cv.imwrite(image_dir + start_time+str(frame_counts)+'.jpg', frame) # changed frame to gray
-                # save labels
-                label = [start_time+str(frame_counts)+'.jpg'] + action
-                with open(label_path, 'a+', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow(label)  # write the data
-            # monitor frame rate
-            duration_since_start = time() - start_stamp
-            ave_frame_rate = frame_counts / duration_since_start
-            #print(f"frame rate: {ave_frame_rate}")
-            if cv.waitKey(1)==ord('q'):
-                motor.kill()
-                cv.destroyAllWindows()
-                pygame.quit()
-                sys.exit()
+        action = [steer, throttle]
+        if is_recording:
+            frame = cv.resize(frame, (120, 160))
+            cv.imwrite(image_dir + start_time+str(frame_counts)+'.jpg', frame) # changed frame to gray
+            # save labels
+            label = [start_time+str(frame_counts)+'.jpg'] + action
+            with open(label_path, 'a+', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(label)  # write the data
+        # monitor frame rate
+        duration_since_start = time() - start_stamp
+        ave_frame_rate = frame_counts / duration_since_start
+        #print(f"frame rate: {ave_frame_rate}")
+        if cv.waitKey(1)==ord('q'):
+            motor.kill()
+            cv.destroyAllWindows()
+            pygame.quit()
+            sys.exit()
 except KeyboardInterrupt:
     motor.stop()
     motor.close()
