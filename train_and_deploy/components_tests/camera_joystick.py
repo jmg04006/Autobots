@@ -3,7 +3,7 @@
 #!/usr/bin/python3
 import sys
 import os
-import cv2 as cv
+import cv2 as cv2
 import pygame
 import time
 import json
@@ -18,9 +18,14 @@ js = pygame.joystick.Joystick(0)
 # init variables
 throttle, steer = 0., 0.
 
+
+
+
+
+
 # init camera
-cap = cv.VideoCapture(0)
-cap.set(cv.CAP_PROP_FPS, 20)
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FPS, 20)
 for i in reversed(range(60)):
     if not i % 20:
         print(i/20)
@@ -47,11 +52,11 @@ try:
         duration_since_start = time() - start_stamp
         ave_frame_rate = frame_counts / duration_since_start
         # print(f"frame rate: {ave_frame_rate}")
-        if cv.waitKey(1)==ord('q'):
-            cv.destroyAllWindows()
+        if cv2.waitKey(1)==ord('q'):
+            cv2.destroyAllWindows()
             pygame.quit()
             sys.exit()
 except KeyboardInterrupt:
-    cv.destroyAllWindows()
+    cv2.destroyAllWindows()
     pygame.quit()
     sys.exit()
