@@ -108,6 +108,7 @@ try:
                     else:
                         print("Stopping data logging")
                     #print(f"action: {action}")
+            action = [steer, throttle]
             if is_recording:
                 frame = cv.resize(frame, (120, 160))
                 cv.imwrite(image_dir + start_time+str(frame_counts)+'.jpg', frame) # changed frame to gray
