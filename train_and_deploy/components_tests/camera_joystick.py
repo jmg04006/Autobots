@@ -5,6 +5,7 @@ cv2.startWindowThread()
 cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
+    print(ret, frame)
     grey = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow("Camera", frame)
     if cv2.waitKey(1) == ord('q'):
