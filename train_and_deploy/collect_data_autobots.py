@@ -48,9 +48,10 @@ label_path = os.path.join(os.path.dirname(os.path.dirname(image_dir)), 'labels.c
 motor = PhaseEnableMotor(phase=19, enable=26)
 servo = AngularServo(17, min_angle=-90, max_angle=90)
 
-#Assign default value of 0 for the motor PWM and the steering angle 
+#Assign default value of 0 for the motor PWM and the steering angle and throttle limit
 throttle = 0
 steer = 0
+throttle_lim = 0.5
 #Set variables initially to zero
 is_recording = False
 frame_counts = 0
@@ -88,9 +89,9 @@ try:
                 if (throttle < 0.05 and throttle > -0.05):
                     motor.stop()
                 elif (throttle > 0.05):
-                    motor.forward(throttle)
+                    motor.forward(throttle * throttle_lim)
                 elif (throttle < -0.05):
-                    motor.backward(-throttle)
+                    motor.backward(-throttle * throttle_lim)
                 #Conditions for steering the servo
                 if (steer < 0.05 and steer > -0.05):
                     servo.angle = -45
