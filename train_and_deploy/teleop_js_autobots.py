@@ -4,6 +4,8 @@ from pygame.locals import *
 from pygame import event, display, joystick
 from gpiozero import PhaseEnableMotor
 from gpiozero import AngularServo
+import json 
+import os 
 
 #Check to make sure robot is in a suitable space for testing
 is_lifted = input("Is any tire having contact with the ground or other objects? [yes/no]")
@@ -22,6 +24,15 @@ print(f"{get_numControllers()} joystick connected")
 js = joystick.Joystick(0)
 pygame.display.init()
 pygame.joystick.init()
+steering_trim = data['steering_trim']
+
+
+# load configs
+config_path = os.path.join(sys.path[0], "config.json")
+f = open(config_path)
+data = json.load(f)
+steering_center = data['steering_center']
+steering_range = data['steering_range']
 
 #Create an instance of the motor and servo objects 
 motor = PhaseEnableMotor(phase=19, enable=26)
@@ -47,7 +58,7 @@ try:
                 elif (throttle < -0.05):
                     motor.backward(-throttle)
                 #Conditions for steering the servo
-                ang = -23 + steer * 67
+                ang = steering_center + steer * steering_range
                 servo.angle = ang
 
 
