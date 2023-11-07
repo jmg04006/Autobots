@@ -24,8 +24,6 @@ print(f"{get_numControllers()} joystick connected")
 js = joystick.Joystick(0)
 pygame.display.init()
 pygame.joystick.init()
-steering_trim = data['steering_trim']
-
 
 # load configs
 config_path = os.path.join(sys.path[0], "config.json")
