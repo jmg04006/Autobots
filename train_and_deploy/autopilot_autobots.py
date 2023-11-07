@@ -105,9 +105,16 @@ try:
         if (steer < 0.05 and steer > -0.05):
             servo.angle = -45
         elif (steer > 0.05):
-            servo.angle = steer * 90
+            if ((steer * 90) > 90): 
+                servo.angle = 90
+            else:
+                servo.angle = steer * 90
         elif (steer < -0.05):
-            servo.angle = steer * 90
+            if ((steer * 90) < 90):
+                servo.angle = -90
+            else:
+                servo.angle = steer * 90
+
         #Emergency stop
         for e in pygame.event.get():
             if e.type == pygame.JOYBUTTONDOWN:
