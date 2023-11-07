@@ -4,7 +4,7 @@ from pygame.locals import *
 from pygame import event, display, joystick
 from gpiozero import PhaseEnableMotor
 from gpiozero import AngularServo
-import json 
+import json, sys
 import os 
 
 #Check to make sure robot is in a suitable space for testing
