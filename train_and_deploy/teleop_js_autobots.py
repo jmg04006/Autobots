@@ -47,7 +47,7 @@ try:
                 elif (throttle < -0.05):
                     motor.backward(-throttle)
                 #Conditions for steering the servo
-                ang = -35 + steer * 55
+                ang = -30 + steer * 60
                 servo.angle = ang
 
 
