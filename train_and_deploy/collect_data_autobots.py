@@ -66,6 +66,7 @@ for i in reversed(range(60)):  # warm up camera
 start_stamp = time()
 ave_frame_rate = 0.
 start_time=datetime.now().strftime("%Y_%m_%d_%H_%M_")
+
 try:
     while(True):
         #Check to make sure camera is getting images
@@ -93,12 +94,15 @@ try:
                 elif (throttle < -0.05):
                     motor.backward(-throttle * throttle_lim)
                 #Conditions for steering the servo
-                if (steer < 0.05 and steer > -0.05):
-                    servo.angle = -45
-                elif (steer > 0.05):
-                    servo.angle = steer * 90
-                elif (steer < -0.05):
-                    servo.angle = steer * 90
+
+                ang = 
+
+                # if (steer < 0.05 and steer > -0.05):
+                #     servo.angle = -45
+                # elif (steer > 0.05):
+                #     servo.angle = steer * 90
+                # elif (steer < -0.05):
+                #     servo.angle = steer * 90
             elif e.type == pygame.JOYBUTTONDOWN:
                 if pygame.joystick.Joystick(0).get_button(0):
                     is_recording = not is_recording
