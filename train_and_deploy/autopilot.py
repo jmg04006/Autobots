@@ -24,6 +24,8 @@ f = open(config_path)
 data = json.load(f)
 steering_trim = -1 * data['steering_trim']
 throttle_lim = data['throttle_lim']
+steering_center = data['steering_center']
+steering_range = data['steering_range']
 # init servo controller
 kit = AngularServo(17, min_angle= 0, max_angle=180)
 # init LEDs

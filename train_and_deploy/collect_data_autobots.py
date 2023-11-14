@@ -19,6 +19,12 @@ assert is_lifted=="no"
 is_ready = input("Are you ready to start motor test? [yes/no]")
 assert is_ready=="yes"
 
+# load configs
+config_path = os.path.join(sys.path[0], "config.json")
+f = open(config_path)
+data = json.load(f)
+steering_center = data['steering_center']
+steering_range = data['steering_range']
 
 def get_numControllers():
     return joystick.get_count()
@@ -94,15 +100,9 @@ try:
                 elif (throttle < -0.05):
                     motor.backward(-throttle * throttle_lim)
                 #Conditions for steering the servo
-
-                ang = 
-
-                # if (steer < 0.05 and steer > -0.05):
-                #     servo.angle = -45
-                # elif (steer > 0.05):
-                #     servo.angle = steer * 90
-                # elif (steer < -0.05):
-                #     servo.angle = steer * 90
+                ang = steering_center + steer * steering_range
+                servo.angle = ang
+                
             elif e.type == pygame.JOYBUTTONDOWN:
                 if pygame.joystick.Joystick(0).get_button(0):
                     is_recording = not is_recording
