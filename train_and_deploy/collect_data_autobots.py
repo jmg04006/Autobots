@@ -57,7 +57,7 @@ servo = AngularServo(17, min_angle=-90, max_angle=90)
 #Assign default value of 0 for the motor PWM and the steering angle and throttle limit
 throttle = 0
 steer = 0
-throttle_lim = 0.5
+throttle_lim = 0.7
 #Set variables initially to zero
 is_recording = False
 frame_counts = 0
