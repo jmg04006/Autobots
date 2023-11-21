@@ -109,6 +109,10 @@ try:
             motor.backward(-throttle * throttle_lim)
         #Conditions for steering the servo
         ang = steering_center + steer * steering_range
+        if ang > 90: 
+            ang = 90
+        elif ang < -90: 
+            ang = -90
         servo.angle = ang
 
         #Emergency stop
