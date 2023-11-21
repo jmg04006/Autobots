@@ -29,6 +29,7 @@ f = open(config_path)
 data = json.load(f)
 steering_center = data['steering_center']
 steering_range = data['steering_range']
+throttle_lim = data['throttle_lim']
 
 def get_numControllers():
     return joystick.get_count()
@@ -66,7 +67,6 @@ servo = AngularServo(17, min_angle=-90, max_angle=90)
 #Assign default value of 0 for the motor PWM and the steering angle and max throttle limit
 throttle = 0
 steer = 0
-throttle_lim = 0.5
 #Set variables initially to zero
 is_recording = False
 frame_counts = 0
