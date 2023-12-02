@@ -22,7 +22,7 @@ f = open(config_path)
 data = json.load(f)
 steering_center = data['steering_center']
 steering_range = data['steering_range']
-throttle_lim = data['throttle_lim']
+throttle_lim = data['throttle_lim_auto']
 
 def get_numControllers():
     return joystick.get_count()
