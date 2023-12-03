@@ -1,6 +1,6 @@
 {
     "steering_trim": -40,
-    "throttle_lim": 1.0,
+    "throttle_lim": 6.0,
     "steering_center": -23, 
     "steering_range": 67,
     "throttle_lim_auto": 0.60
