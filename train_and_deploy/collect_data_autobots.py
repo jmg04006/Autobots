@@ -13,12 +13,6 @@ from datetime import datetime
 from gpiozero import LED, AngularServo
 from time import time
 
-#Check to make sure robot is in a suitable space for testing
-is_lifted = input("Is any tire having contact with the ground or other objects? [yes/no]")
-assert is_lifted=="no"
-is_ready = input("Are you ready to start motor test? [yes/no]")
-assert is_ready=="yes"
-
 # load configs
 config_path = os.path.join(sys.path[0], "config.json")
 f = open(config_path)
