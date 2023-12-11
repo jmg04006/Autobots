@@ -51,10 +51,9 @@ While we found a neural network architecture that produced functional models, it
 
 ## Contributors 
 We completed this design project during our senior year at the University of Central Arkansas. In May 2023, we each graduated with a Bachelor's of Science in [Engineering Physics](https://uca.edu/physics/engineering-physics/). 
-- [Austin Miller](https://github.com/amillertime)
-- [Colby Hoggard](https://github.com/choggard123)
-- [Nadira Amadou](https://github.com/nadira30)
-- [Will Ward](https://github.com/willward20)
+- [Josiah Goode](https://github.com/jmg04006)
+- [Masai Olowokere](https://github.com/Masai618)
+- [Simon Podsiadlik](https://github.com/spodsiadlik)
 
 ## Advisor
 - [Dr. Lin Zhang](https://github.com/linzhangUCA) (Thank you for your constant support and enthusiasm!)
