@@ -98,8 +98,8 @@ def test(dataloader, model, loss_fn):
 if __name__ == '__main__':
 
     # Create a dataset
-    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_05_14_54/labels.csv"  # the name of the csv file
-    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_05_14_54/images"  # the name of the folder with all the images in it
+    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_11_16_10/labels.csv"  # the name of the csv file
+    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_11_16_10/images"  # the name of the folder with all the images in it
     collected_data = CustomImageDataset(annotations_file, img_dir)
     print("data length: ", len(collected_data))
 
