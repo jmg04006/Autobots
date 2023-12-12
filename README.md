@@ -9,6 +9,7 @@ We created our autonomous process using vision-based supervised maching learning
 
 
 ## Circuit Diagram
+![image0 (9)](https://github.com/jmg04006/Autobots/assets/112110593/7134de64-b7ed-44d5-8c11-16c3c8ebdef3)
 
 
 ## Repository Contents
@@ -27,11 +28,11 @@ After testing several variations of CNN architectures, we had the most success w
 <img src="https://github.com/willward20/WHAM/blob/main/media/cnn_architecture.png"/>
 
 ## Issues That We Ran Into & Solutions
-Design of Base
+When we began work on this project, the first aspect that we wanted to change was the design of the base. Previously, all of the electrical components were housed inside of a plastic box, and we had difficulty accessing the parts to make adjustments. Therefore, throughout the semester, we used FreeCAD to create and adjust a palstic base where all of the components are easily accessible. It also served as a great introduction to CAD software as a whole, which is a skill that I will continue to build over the coming semester.
 
-Previous code not working - Josiah
+Another issue that we ran into was the WHAM's previous code was not working with our robot. - Josiah
 
-Motors Burning Out
+One final major issue that we encountered towards the end of the semester involved our I2 motors burning out. It would function properly until we executed our data collection program, during which the motor would overheat and start to smoke. This issue occurred twice, and after researching the type of motor, we found out that this was a recurring issue with the part. Therefore, we replaced the motor with a new model (Injora 550) and it now seems to work effectively.
 
 ## Track Possibilities & Conditions
 ### Indoor Tracks:
