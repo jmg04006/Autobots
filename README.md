@@ -62,17 +62,8 @@ Throughout this project, we built an autonomous robot using the modified RC car 
 
 
 ## Goals for Next Semester
-Investigating lighting factors (angle of sun/time of day)
-
-Navigate all other mazes, inclduing outdoor mazes
-
-Incorporate new sensors/ design new safety features (roll cage, etc.)
-
-Fine-tuning the neural network
-
-One area of investigation that still needs work is determining the best method for training the neural network. Our most successful tests have been data sets collected continuously, usually with between 15 thousand and 20 thousand images. We would like to see this project taken to the next level, with a neural network model that is general enough to operate under changing conditions (background, weather, time of day) without additional data collection. We tried combining data collected on the course under these different circumstances and training a model, but they performed very poorly. New sensors could potentially help with this. There have been similar projects that use additional information like stereo depth vision and absolute GPS position data based on the start point to make more general models.
-
-While we found a neural network architecture that produced functional models, it was very picky about the weather conditions. We only had successful models when the robot was out of sunlight, and the surroundings were not too bright. This could have been due to the camera itself creating image artifacting from the light, or it could have been because of the model putting too much weight on the brightness of colors. Either way, we recommend trying other neural network architectures to see if there are any that perform better than Donkey Car's fastai architecture.
+Going into next semester, there are still multiple avenues that we would like to explore with our robot. First, we would like to investigate the lighting factos and their influence on sensors. This could include the time of day and the angle of the sun. These effects have also been explored by team Flashfire this semester, so we shoudl reach out to them and discuss their findings. Additionally, by understanding those factor, we could accomplish our goal of navigating through all five maze options, including the outdoor tracks.
+We would also like to experiment with incorporating new sensors like LIDAR, and we want add new safety features to protect the exposed components. This could include something like a roll cage, or a plastic encasing that goes over the top. Dy doing this, we can ensure that all parts of our robot will be safe in the event of a crash or malfunction. Lastly, we would like to spend more time fine-tuning the neural network and making sure that it runs smoothly and effectively, regardless of the various conditions.
 
 
 ## Important Links 
