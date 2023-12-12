@@ -1,6 +1,7 @@
 # Vision-Based Autonomous Driving Using Neural Networks
 
-<img src="https://github.com/willward20/WHAM/blob/main/media/WHAM_car.jpg" width="350"/> <img src="https://github.com/willward20/WHAM/blob/main/media/course.jpg" width="450" />
+![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) ![cccs_clipper](https://github.com/jmg04006/Autobots/assets/112110593/810aa70e-4509-494c-87b4-9870c30304e4)
+
 
 ## Project Overview
 Our team designed a small autonomous vehicle with the goal of autonomously navigating various mazes set up throughout Lewis Science Center (LSC) and the Conway Corporation Center for Sciences (CCCS). The setup of the tracks is loosely based on two robotics competitions that last year's teams competed in:  (1) the Autonomous Vehicle Challenge at the [National Robotics Challenge](https://www.thenrc.org/) (NRC) and (2) the Intelligent Vehicle Challenge at the annual [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/) (ASGC) Symposium. However, on our version of the tracks, there are multiple different variables at play that will be described below. By the end of next semester, we plan to have the ability to autonomously navigate all five possible tracks.
