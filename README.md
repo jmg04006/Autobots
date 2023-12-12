@@ -8,7 +8,7 @@ Our team designed a small autonomous vehicle with the goal of autonomously navig
 We created our autonomous process using vision-based supervised maching learning, and we continues the work of Team WHAM from last semester (who took inspiration from the open-source [Donkey Car](https://docs.donkeycar.com/) project. Our robot's navigational process starts with data collected when we drive it around the preset course multiple times. The bot records both images from a mounted camera and the driving command inputs, and this data is used to optimize a convolutional neural network. Then, when we start the vehicle autonomous navigation process, it will take in new images and use the previous data to determine how and where to drive the bot through a course. We are still figuring out how to fine-tune the process, but our bot has been able to effectively navigate the maze.
 
 
-## Circuit Diagram & Parts List
+## Circuit Diagram
 
 
 ## Repository Contents
@@ -83,3 +83,23 @@ During our final year at the University of Central Arkansas, we built on the wor
 
 ## Advisor
 - [Dr. Lin Zhang](https://github.com/linzhangUCA) (Thank you for your constant support, guidance, and enthusiasm!)
+
+
+# Appendix
+## Parts List
+| Name | Description | Quantity |
+| --- | --- | --- |
+| Raspberry Pi 4 | CPU Unit Used to Run Robot | 1 |
+| Motor Driver Board (Cytron MD30C R2) | An Unit That Allows Motors to Be Controlled Using the Raspberry Pi | 1 |
+| Injora 550 Waterproof Brushed Motor 12T | Used to Drive the Bot (Forward and Backward) | 1 |
+| Miuzci 20kg Digital Servo | Used to Steer the Bot (Left and Right) | 1 |
+| Voltage Divider | Used to Control the Voltage Entering the Motor/Servo | 1 |
+| MH Voltage Regulator | Used to Regulate the Voltage Entering the Motor/Servo | 1 |
+| Web Camera | Used to Guide the Robot and Analyze Surroundings | 1 |
+| Bluetooth Gaming Controller | Used to Control the Movement of the Robot During Data Collection | 1 |
+| Battery | 1000 mAh, 7.4  V Lithium Polymer Battery (Powers Motors) | 1 |
+| Anker Power Bank | Serves as a Power Source for the Pi | 1 |
+| 3-D Printed Frame | Used as a Base to Hold Attached Components | 1 |
+| RC Car Frame | Used as a Base for the Overall Robot | 1 |
+| Stand-off Screws | Used to Attach Parts to the Bot | 21 |
+| Screws | Various Sized Screws Used to Attach Parts | 18 |
