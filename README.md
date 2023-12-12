@@ -14,8 +14,12 @@ We created our autonomous process using vision-based supervised maching learning
 
 ## Repository Contents
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
+
+
+
+
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
-- [motor.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/motor.py) and [servo.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/servo.py) scripts that contain functions for initializing and deploying the vehicle's motor/motor driver and steering servo/PWM board;
+- [motor.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/motor.py), [servo.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/servo.py), [camera.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera.py), and [joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick.py) are team WHAM's scripts that verify that the individual components work by themselves;
 - a [collect_data.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/collect_data.py) script that is used to manually drive the vehicle with a wireless controller while collecting steering, throttle, and camera data; 
 - a [train.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/train.py) script that trains a CNN using PyTorch and generates a .pth autopilot file containing the trained parameters; 
 - an [autopilot.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/autopilot.py) script that drives the vehicle autonomously using a .pth autopilot file; 
