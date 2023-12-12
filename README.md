@@ -1,7 +1,6 @@
 # Vision-Based Autonomous Driving Using Neural Networks
 
-![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) ![cccs_clipper](https://github.com/jmg04006/Autobots/assets/112110593/810aa70e-4509-494c-87b4-9870c30304e4)
-
+![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) 
 
 ## Project Overview
 Our team designed a small autonomous vehicle with the goal of autonomously navigating various mazes set up throughout Lewis Science Center (LSC) and the Conway Corporation Center for Sciences (CCCS). The setup of the tracks is loosely based on two robotics competitions that last year's teams competed in:  (1) the Autonomous Vehicle Challenge at the [National Robotics Challenge](https://www.thenrc.org/) (NRC) and (2) the Intelligent Vehicle Challenge at the annual [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/) (ASGC) Symposium. However, on our version of the tracks, there are multiple different variables at play that will be described below. By the end of next semester, we plan to have the ability to autonomously navigate all five possible tracks.
@@ -27,7 +26,11 @@ After testing several variations of CNN architectures, we had the most success w
 <img src="https://github.com/willward20/WHAM/blob/main/media/cnn_architecture.png"/>
 
 ## Issues That We Ran Into & Solutions
+Design of Base
 
+Previous code not working
+
+Motors Burning Out
 
 ## Track Possibilities & Conditions
 ### Indoor Tracks:
@@ -39,15 +42,26 @@ After testing several variations of CNN architectures, we had the most success w
 - **Ants Nests:** CCCS' west entrance: Small, involves two-direction turns and slopes.
 - **LSC Plaza:** Parking lot between LSC and Annex: Medium-sized, partially offroad, involves two-direction turns and slopes.
 
+For our final project, we decided to navigate the CCCS' main entrance, since it incorporates the most 
+
+![cccs_clipper](https://github.com/jmg04006/Autobots/assets/112110593/8777682c-2be3-484f-b12c-3af9f5e686a5)
+
+
 ## Autonomous Vehicle Performance
 Will upload a video after final test!!!
 
 
 ## Project Conclusions
-We built an autonomous ground vehicle using a modified RC car, a Raspberry Pi, and a vision-based neural network. We can connect a bluetooth joystick with the car to engage the throttle, adjust the steering, and record data for neural network training: camera images and user joystick input. After collecting driving data on a course, we can train the parameters of a convolutional neural network to reduce the loss between predictions and ground truth values. Finally, we can import the trained parameters into a neural network autopilot file that autonomously controls the steering and throttle of the vehicle when live camera images are received. The autopilot performs well when operating indoors or under a shaded area outside. However, when driving outside in the sun, the performance accuracy decreased dramatically.
+Throughout this project, we built an autonomous robot using the modified RC car and parts left by Team WHAM from last year. Then, we constructed our own vision-based neural network by taking some of WHAM's original code and instating functions of our own to ensure that the Bluetooth controller and the Raspberry Pi were functioning exactly how we wanted.  To accomplish this, we made sure that the joystick could indepently control the steering and the throttle while taking in data using a camera. Using this process, we would drive the robot around the course multiple times (around 20), to collect data, and then, we'd input the images into our neural network. Lastly, we used the data in conjunction with our _autopilot_ file in order to have the bot autonomously navigate the track. We were able to get the robot to effectively pilot itself through the maze, especially once we fixed our hardware issues.
 
 
 ## Goals for Next Semester
+Investigating lighting factors (angle of sun/time of day)
+
+Navigate all other mazes, inclduing outdoor mazes
+
+Incorporate new sensors/ design new safety features (roll cage, etc.)
+
 One area of investigation that still needs work is determining the best method for training the neural network. Our most successful tests have been data sets collected continuously, usually with between 15 thousand and 20 thousand images. We would like to see this project taken to the next level, with a neural network model that is general enough to operate under changing conditions (background, weather, time of day) without additional data collection. We tried combining data collected on the course under these different circumstances and training a model, but they performed very poorly. New sensors could potentially help with this. There have been similar projects that use additional information like stereo depth vision and absolute GPS position data based on the start point to make more general models.
 
 While we found a neural network architecture that produced functional models, it was very picky about the weather conditions. We only had successful models when the robot was out of sunlight, and the surroundings were not too bright. This could have been due to the camera itself creating image artifacting from the light, or it could have been because of the model putting too much weight on the brightness of colors. Either way, we recommend trying other neural network architectures to see if there are any that perform better than Donkey Car's fastai architecture.
