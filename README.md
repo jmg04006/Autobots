@@ -31,7 +31,7 @@ We created our autonomous process using vision-based supervised maching learning
 
 To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). That page explains all the steps for pre-installation, collecting data, training a model, and running autopilot. It is a general template for performing those tasks. 
 
-### To train a model and run autopilo: 
+### To train a model and run autopilot: 
 
 1. From the host computer, type ssh -X user@192.168.0.111 into the terminal to connect to the RPi remotely.
 2. Navigate to the 'train_and_deply' folder.
