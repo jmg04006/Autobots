@@ -78,16 +78,7 @@ For our final project, we decided to navigate the CCCS' main entrance, since it 
 
 
 ## Autonomous Vehicle Performance
-> You can try to answer the following questions:
-> 1. How much data did you collected for the final test?
-> 2. How did your model look like? (size? number of parameters? etc.)
-> 3. How good is your model training?
-> 4. How long it took to finish a lap?
-> 5. Any issues observed?
-
-- This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023!
-- We collected 24,834 images. Each image had its respective throttle and steering value.
-- Below is picture of the training loss curve for our model that was used in the final race
+This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023! Our robot functioned properly and was able to autonomously navigate the maze in about 27 seconds. In the process of obtaining data for the final test, we collected 24,834 images, and each image, in addition to its own pixel values, had a respective throttle and steering value. Below, we have included a picture of the training loss curve that our model used in the final race. The training and test loss are quite low in the end, meaning that our data was sufficient with slight room for error. Lastly, the only issue that we observed with our bot during the final race occurred after completing one full lap; our robot would go towards a specific spot in the chairs that was not on the programmed course. Therefore, we should consider fine-tuning the model to complete more than one lap.
 
 ![Loss versus Training Epoch](https://github.com/jmg04006/Autobots/blob/main/media/DonkeyNet_15_epochs_lr_1e_3.png) 
 
