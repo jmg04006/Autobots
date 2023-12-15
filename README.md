@@ -15,25 +15,15 @@ We created our autonomous process using vision-based supervised machine learning
 ## Project Instructions
 To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). That page explains all the steps for pre-installation, collecting data, training a model, and running autopilot. It is a general template for performing those tasks. 
 
-### To train a model and run autopilot: 
+### Training a Model and Running Autopilot: 
 
 1. From the host computer, type ssh -X user@192.168.0.111 into the terminal to connect to the RPi remotely. (Note: The IP address/username will depend on what you set up; this change will also translate to other steps below.)
-2. Navigate to the _train_and_deploy_ folder. Its contents are decribed in more detail below.
+2. Navigate to the _train_and_deploy_ folder. The contents of this folder are describen more in detail in the [Wiki](https://github.com/jmg04006/Autobots/wiki/Description-of-Content-in-train_and_deploy-Folder).
 3. Run _collect_data_autobots.py_ and start collecting data by pressing the X key on the wireless controller.
 4. Once data collection is complete, transfer the data to the host computer from the RPi by typing rsync -rv user@192.168.0.111:~/Autobots/train_and_deploy/data/FOLDERNAME ~/Autobots/train_and_deploy/data/ into the host terminal window. FOLDERNAME needs to be changed to the name of the folder where the data is stored. It can be found in Data folder inside the _train_and_deploy_ folder.
 5. Go to the _train.py_ script on the host computer and change the Folder name in lines 101 and 102 in the script to the folder name where the data was saved. Then, run the script.
 6. After _train.py_ is finished and the model is created, transfer it back to the RPi using and command rsync -rv /home/robotics-j/Autobots/train_and_deploy/data/FOLDERNAME/DonkeyNet_15_epochs_lr_1e_3.pth user@192.168.0.111:~/Autobots/train_and_deploy/models/. Run this command in the host terminal, and change the foldername to the name of the folder where the data was stored before running the command.
 7. Lastly, run _autopilot_autobots.py_ .
-
-This _train_and_deploy_ folder contains all of the software for our autonomous vehicle, including:
-- [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) - Limits the vehicle's maximum throttle and defines the vehicle's steering trim.
-- [camera_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera_joystick.py), [joystick_servo.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick_servo.py), and [motor_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/motor_joystick.py) - Makes sure the joytick works in conjunction with the motor, servo, and camera individually.
-- [servoCalibration.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/servoCalibration.py) - Ensures the servo is calibrated correctly.
-- [collect_data_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/collect_data_autobots.py) - Allows the robot to be driven manually while collecting throttle, steering, and image data; 
-- [train.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/train.py) - Trains a convolutional nerual network using PyTorch and generates a .pth autopilot file containing the trained parameters 
-- [autopilot_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/autopilot_autobots.py) - Allows the robot to be driven autonomously by using a trained model to make predictions about throttle and steering values based off of incoming image data; 
-- [cnn_network.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/cnn_network.py) - Defines the neural network architectures accessed by the train.py and autopilot.py scripts.;
--  [teleop_js_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js_autobots.py) - Combines the components' test scripts to create script to manually drive the robot.
 
 
 ## Approaches
