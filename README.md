@@ -28,6 +28,7 @@ We created our autonomous process using vision-based supervised maching learning
 > 1. It is essential to introduce the usage of `collect_data.py`, `train.py` and `autopilot.py`. Instructions on other scripts or directories (e.g. `component_tests`, `/data`) are welcome but not necessary.
 > 2. You'll need to clean up this repository. Archive or delete files that no longer using or not compatible. No need to explain the usage of WHAM's code here.
 > 3. You can include technical details here (basically, grab some of the most important techniques from your notes and the wiki pages. e.g. remote access RPi, transfer data, etc.).
+
 To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). 
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
