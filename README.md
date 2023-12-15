@@ -13,7 +13,7 @@ We created our autonomous process using vision-based supervised machine learning
 
 
 ## Project Instructions
-To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). That page explains all the steps for pre-installation, collecting data, training a model, and running autopilot, and is a general template for performing those tasks. 
+To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). That page explains all the steps for pre-installation, collecting data, training a model, and running autopilot, and it is a great general template for performing those tasks. 
 
 ### Training a Model and Running Autopilot: 
 1. From the host computer, type ssh -X user@192.168.0.111 into the terminal to connect to the RPi remotely. (Note: The IP address/username will depend on what you set up; this change will also translate to other steps below.)
