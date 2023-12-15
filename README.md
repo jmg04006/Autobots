@@ -1,5 +1,4 @@
 # Team Autobots - Autonomous Navigation Using a Neural Network
-> All comments are in gray.
 
 ![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) 
 
