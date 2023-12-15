@@ -40,31 +40,23 @@ This `train_and_deploy` folder contains all of the software for our autonomous v
 - [teleop_js.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js.py) is team WHAM's script that integrates motor, servo, and joystick functionality, so the robot can be driven manually. [teleop_js_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js_autobots.py) is team Autobots version of teleop_js.
 
 
-## Convolutional Neural Network
+## Approaches
 > Make this section as **Approaches** section. Use your knowledge learned from deep learning class to explain how the autopilot model works under the hood. Assuming you are explaining everything to high school students. Diagrams and more illustrative methods are welcome here. 
 
 After testing several variations of CNN architectures, we had the most success with Donkey Car's [fastai](https://github.com/autorope/donkeycar/blob/main/donkeycar/parts/fastai.py) architecture (see the "Linear" class). The figure below shows how we modified the CNN structure to accomodate for our input image size and achieve the best results.  Our network architecture has five convolution layers and three fully connected layers. Each image in the network has an input size of 3x120x160 (3 color channels, 120 pixel horizontal width, and 160 pixel vertical height) and an output size of 2 prediction values: steering and throttle. When a dataset is loaded, the recorded images are split into training images (90-95% of the data) and test images (10-5%). During the training process, the network uses the Mean Square Error (MSE) loss function, Adam optimizer, a learning rate of 1E-3, and batch sizes of 125 (train) and 125 (test). The neural network iteratively trains for typically 10-20 epochs. We found the most success when using datasets with a size between 15-20k images.
 
 <img src="https://github.com/willward20/WHAM/blob/main/media/cnn_architecture.png"/>
 
-## Issues That We Ran Into & Solutions
-> Save this section in the **Appendix** or in the **Project Conclusion** section. The main goal of this document is to help people start a copy of this project. Your stories and learned lessons are critical to you but may not be useful to the followers.  
 
-When we began work on this project, the first aspect that we wanted to change was the design of the base. Previously, all of the electrical components were housed inside of a plastic box, and we had difficulty accessing the parts to make adjustments. Therefore, throughout the semester, we used FreeCAD to create and adjust a palstic base where all of the components are easily accessible. It also served as a great introduction to CAD software as a whole, which is a skill that I will continue to build over the coming semester.
-
-We decided to interact with the steering servo directly instead of using a PWD board. When we made that change, we realized it would be better to use the gpiozero library to steer the robot and control the motor. The previous team used the adafruit library to handle those tanks. When we made the change, we had to update all the python scripts that involved steering and the motor, so they would work with the new library. We kept all the previous team's python scripts in our github in case a future team decides to switch back to the adafruit library. There were component tests to see if the motor, servo, camera, and joystick work properly. We created our own python scripts to ensure that the joystick would work with the motor, servo, and camera. We then created an Autobots version to teleop_js, so we could drive the robot manually. Finally, we made new Autobot versions of the collect_data and autopilot python scripts. We rewrote all the code to work with the gpiozero library using useful pieces of code from the previous team's python scripts. 
-
-One final major issue that we encountered towards the end of the semester involved our I2 motors burning out. It would function properly until we executed our data collection program, during which the motor would overheat and start to smoke. This issue occurred twice, and after researching the type of motor, we found out that this was a recurring issue with the part. Therefore, we replaced the motor with a new model (Injora 550) and it now seems to work effectively.
-
-## Track Possibilities & Conditions
+### Track Possibilities & Conditions
 > This section could be a sub-section in the previous **Approaches** section.
 
-### Indoor Tracks:
+#### Indoor Tracks:
 - **The Basement:** LSC's basement: Large, involves one-direction turns, scenery is repetitive.
 - **Office Connection:** LSC's first floor: Medium-sized, involves one-direction turns, slopes, and a narrow passage.
 - **CCCS Clipper:** CCCS' main entrance: Small, involves two-direction turns, narrow passages, and sharp turns. Additionally, it needs buckets to set up.
 
-### Outdoor Tracks
+#### Outdoor Tracks
 - **Ants Nests:** CCCS' west entrance: Small, involves two-direction turns and slopes.
 - **LSC Plaza:** Parking lot between LSC and Annex: Medium-sized, partially offroad, involves two-direction turns and slopes.
 
@@ -80,7 +72,8 @@ For our final project, we decided to navigate the CCCS' main entrance, since it 
 > 3. How good is your model training?
 > 4. How long it took to finish a lap?
 > 5. Any issues observed?
-Will upload a video after final test!!!
+
+This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023!
 
 
 ## Project Conclusions
@@ -93,16 +86,10 @@ Throughout this project, we built an autonomous robot using the modified RC car 
 
 
 ## Goals for Next Semester
-> Your time in next semester will be even tighter. Set your goals more specific and wisely. In my opinion, a new network structure plus a roll cage would be sufficiently challenging. You've been doing great in this project. It is not a shame to save the future investigations to your successors.
-
-Going into next semester, there are still multiple avenues that we would like to explore with our robot. First, we would like to investigate the lighting factos and their influence on sensors. This could include the time of day and the angle of the sun. These effects have also been explored by team Flashfire this semester, so we shoudl reach out to them and discuss their findings. Additionally, by understanding those factor, we could accomplish our goal of navigating through all five maze options, including the outdoor tracks.
-We would also like to experiment with incorporating new sensors like LIDAR, and we want add new safety features to protect the exposed components. This could include something like a roll cage, or a plastic encasing that goes over the top. Dy doing this, we can ensure that all parts of our robot will be safe in the event of a crash or malfunction. Lastly, we would like to spend more time fine-tuning the neural network and making sure that it runs smoothly and effectively, regardless of the various conditions.
+Going into next semester, there are three main avenues that we would like to explore with our robot. First, we would like to investigate the lighting factos and their influence on sensors. This could include the time of day and the angle of the sun. These effects have also been explored by team Flashfire this semester, so we should reach out to them and discuss their findings. Additionally, we would also like with more safety features, particularly a roll cage, and make sure that we are following all safety standards. Lastly, we would like to explore a new network structure for our robot's navigation training to fine tune the process and make it more accurate.
 
 
-## Important Links 
-> The NRC link is not important any more.
-
-- [National Robotics Challenge](https://www.thenrc.org/)
+## Important Link(s)
 - [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/)
 
 
@@ -123,10 +110,8 @@ During our final year at the University of Central Arkansas, we built on the wor
 
 | Property | Quantity |
 | --- | --- |
-| Weight |  |
+| Weight | 3.2 kg |
 | Dimension (Length x Width x Height) | 0.51 m x 0.305 m x 0.195 m |
-| Maximum Speed (Linear) |  |
-| Maximum Speed (Radial) |  |
 | Wheel Radius | 5.7 cm |
 | Wheel Separation (Width) | 21 cm |
 | Wheel Separation (Length) | 33.2 cm |
@@ -149,3 +134,10 @@ During our final year at the University of Central Arkansas, we built on the wor
 | RC Car Frame | Used as a Base for the Overall Robot | 1 |
 | Stand-off Screws | Used to Attach Parts to the Bot | 21 |
 | Screws | Various Sized Screws Used to Attach Parts | 18 |
+
+## Issues That We Ran Into & Solutions
+When we began work on this project, the first aspect that we wanted to change was the design of the base. Previously, all of the electrical components were housed inside of a plastic box, and we had difficulty accessing the parts to make adjustments. Therefore, throughout the semester, we used FreeCAD to create and adjust a palstic base where all of the components are easily accessible. It also served as a great introduction to CAD software as a whole, which is a skill that I will continue to build over the coming semester.
+
+We decided to interact with the steering servo directly instead of using a PWD board. When we made that change, we realized it would be better to use the gpiozero library to steer the robot and control the motor. The previous team used the adafruit library to handle those tanks. When we made the change, we had to update all the python scripts that involved steering and the motor, so they would work with the new library. We kept all the previous team's python scripts in our github in case a future team decides to switch back to the adafruit library. There were component tests to see if the motor, servo, camera, and joystick work properly. We created our own python scripts to ensure that the joystick would work with the motor, servo, and camera. We then created an Autobots version to teleop_js, so we could drive the robot manually. Finally, we made new Autobot versions of the collect_data and autopilot python scripts. We rewrote all the code to work with the gpiozero library using useful pieces of code from the previous team's python scripts. 
+
+One final major issue that we encountered towards the end of the semester involved our I2 motors burning out. It would function properly until we executed our data collection program, during which the motor would overheat and start to smoke. This issue occurred twice, and after researching the type of motor, we found out that this was a recurring issue with the part. Therefore, we replaced the motor with a new model (Injora 550) and it now seems to work effectively.
