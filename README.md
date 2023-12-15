@@ -1,26 +1,17 @@
-# Vision-Based Autonomous Driving Using Neural Networks
+# Team Autobots - Autonomous Navigation Using a Neural Network
 > All comments are in gray.
 
 ![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) 
 
 ## Project Overview 
-> - You have a very good introduction on the backgrounds.
-> - Briefly describe the big picture of the approach. Formats of the data, or how the model is trained is trivial in this section. You can expand the theoretical/technical details in the later section (e.g. in **Approaches**).
-> - State the most notable achievement (which should be a functional protype that completed the *CCCS Clipper* track in the final race).
-
 Our team designed a small autonomous vehicle with the goal of autonomously navigating various mazes set up throughout Lewis Science Center (LSC) and the Conway Corporation Center for Sciences (CCCS). The setup of the tracks is loosely based on two robotics competitions that last year's teams competed in:  (1) the Autonomous Vehicle Challenge at the [National Robotics Challenge](https://www.thenrc.org/) (NRC) and (2) the Intelligent Vehicle Challenge at the annual [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/) (ASGC) Symposium. However, on our version of the tracks, there are multiple different variables at play that will be described below. By the end of next semester, we plan to have the ability to autonomously navigate all five possible tracks.
 
 We created our autonomous process using vision-based supervised machine learning, and we continued the work of Team WHAM from last semester (who took inspiration from the open-source [Donkey Car](https://docs.donkeycar.com/) project. To navigate the maze, we first collected data by driving the bot around the course with a camera, and then we used a neural network to train a model that the robot would use to find its way through the course. At the end of the semester, we were able to used this method to have our robot autnomously navigate around the _CCCS Clipper_ track (see _Autonomous Vehicle Performance_ section).
 
 
 ## Circuit Diagram
-> 1. Add powerbank.
-> 2. The name "Voltage Divider" is misleading, it is just a wire splitter.
-> 3. The DC motor has no polarity difference.
-> 4. It is better to indicate the webcam is connecting to the USB port on RPi.
-> 5. If possible, indicate input/output voltage for each device.
+![image0 (10)](https://github.com/jmg04006/Autobots/assets/112110593/f5bf7ea1-deae-41f1-9be8-5103e386c89a)
 
-![image0 (9)](https://github.com/jmg04006/Autobots/assets/112110593/7134de64-b7ed-44d5-8c11-16c3c8ebdef3)
 
 
 ## Project Instructions
@@ -53,6 +44,19 @@ This `train_and_deploy` folder contains all of the software for our autonomous v
 
 ## Approaches
 > Make this section as **Approaches** section. Use your knowledge learned from deep learning class to explain how the autopilot model works under the hood. Assuming you are explaining everything to high school students. Diagrams and more illustrative methods are welcome here.
+
+Data Collection - Describe what data you are going to collect (image, corresponding throttle/steering values) - Save image to directory and save steering/throttle values in .csv file
+- Image data - feature data
+- Trottle/Steering - target data
+
+Training  - Involves forward pass (going to use to compute a prodicted throttle/steering value based on images)
+- Back propagation
+- Compare predicted values to label/target values from data collection
+- Calculate the error between target and predicted values using MSE
+- Calculate the gradient of the error(loss) with respect to trainable parameters to update them.
+
+Navigation - Using new input images in conjuction with trained parameters to make a prediction by itself on how to navigate the course.
+
 
 Our robot's navigational process starts with data collected when we drive it around the preset course multiple times (we aimed for about 20 times on average). While we steer the robot, it records images from a mounted camera on the front which we will then use to train the robot. Next, we compress the images and run them through a convolutional neural network. This neural network flattens and compresses the image until we retrieve two values: steering and throttle. A graphic showing this process is shown below. Once the training is completed, we then begin the autonomous navigation process. During this, our robot will take in images while driving and make a prediction about where and how fast it should go based on the trained paramters. In doing so, our robot can actively make slight adjustments based on new information in the course and effectively navigate the maze.
 
