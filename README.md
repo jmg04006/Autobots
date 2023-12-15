@@ -49,7 +49,6 @@ After testing several variations of CNN architectures, we had the most success w
 
 
 ### Track Possibilities & Conditions
-> This section could be a sub-section in the previous **Approaches** section.
 
 #### Indoor Tracks:
 - **The Basement:** LSC's basement: Large, involves one-direction turns, scenery is repetitive.
