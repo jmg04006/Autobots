@@ -83,7 +83,7 @@ For our final project, we decided to navigate the CCCS' main entrance, since it 
 > 4. How long it took to finish a lap?
 > 5. Any issues observed?
 
-This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023!
+This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023! We collected 24,834 images. Each image had its respective throttle and steering value. 
 
 
 ## Project Conclusions
