@@ -27,24 +27,14 @@ To get things started, we go to the Autobots Wiki page and find [First Time Driv
 
 
 ## Approaches
-> Make this section as **Approaches** section. Use your knowledge learned from deep learning class to explain how the autopilot model works under the hood. Assuming you are explaining everything to high school students. Diagrams and more illustrative methods are welcome here.
-
 The procedure for our robot's autonomous navigation consists of three primary sub-processes: data collection, neural network training, and autopilot/navigation.
 
 Initially, we collected data using a mounted camera as we drove it around the decided course multiple times (we tended to do about 20 laps on average). As we drove around the area, we collected both image data and the corresponding throttle/steering values. Then, we saved the image data (our _feature data_) to a directory, and the throttle/steering values (our _target data_) into a .csv file.
 
-Next, we trained a neural network using our _train.py_ script. To accomplish this, we executed a __forward pass__ where we used our recorded images to compute predicted throttle and steering values. Second, we used _back propagation_
+Next, we trained a neural network using our _train.py_ script. To accomplish this, we executed a __forward pass__ where we used our recorded images to compute predicted throttle and steering values. By flattening and reshaping the image data, we eventually make it possible retrieve two values: steering and throttle. A graphic showing this process is shown below.
+Secondly, we used __back propagation__, which compares our predicted values to the target data (throttle/steering) from our data collection. We did this by using the **Mean Squared Error** (or **MSE**) function to calculate the error between the recorded and predicted values. Then, once we knew our error (or loss) values, we calculated the gradient of that error with respect to our trainable parameters to update them.
 
-Training  - Involves forward pass (going to use to compute a prodicted throttle/steering value based on images)
-- Back propagation
-- Compare predicted values to label/target values from data collection
-- Calculate the error between target and predicted values using MSE
-- Calculate the gradient of the error(loss) with respect to trainable parameters to update them.
-
-Navigation - Using new input images in conjuction with trained parameters to make a prediction by itself on how to navigate the course.
-
-
-Our robot's navigational process starts with data collected when we drive it around the preset course multiple times (we aimed for about 20 times on average). While we steer the robot, it records images from a mounted camera on the front which we will then use to train the robot. Next, we compress the images and run them through a convolutional neural network. This neural network flattens and compresses the image until we retrieve two values: steering and throttle. A graphic showing this process is shown below. Once the training is completed, we then begin the autonomous navigation process. During this, our robot will take in images while driving and make a prediction about where and how fast it should go based on the trained paramters. In doing so, our robot can actively make slight adjustments based on new information in the course and effectively navigate the maze.
+Lastly, once the model training is complete, we can begin the final step: autonomous navigation. During this process, our robot will take in new images while driving, and it will use these new input images in conjuction with the trained parameters to make a prediction by itself on how to navigate the course by adjusting both the throttle and steering values. This method also allows the bot to actively adjust to any minor changes in the course, and eventually navigate on its own.
 
 ![cnn_architecture](https://github.com/jmg04006/Autobots/assets/112110593/21f1a2d3-da94-4caf-9365-79268b2af716)
 
