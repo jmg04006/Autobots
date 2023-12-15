@@ -39,7 +39,7 @@ To get things started, we go to the Autobots Wiki page and find [First Time Driv
 4. Once data collection is complete, transfer the data to the host computer from the RPi by typing rsync -rv user@192.168.0.111:~/Autobots/train_and_deploy/data/FOLDERNAME ~/Autobots/train_and_deploy/data/ into the host terminal window. FOLDERNAME needs to be changed to the name of the folder where the data is stored. It can be found in Data folder inside the 'train_and_deploy' folder.
 5. Go to the 'train.py' script on the host computer and change the Folder name in lines 101 and 102 in the script to the folder name where the data was saved and run the script.
 6. After 'train.py' is done and the model is created. Transfer it back to the RPi using and command rsync -rv /home/robotics-j/Autobots/train_and_deploy/data/FOLDERNAME/DonkeyNet_15_epochs_lr_1e_3.pth user@192.168.0.111:~/Autobots/train_and_deploy/models/. Run the command in the host terminal. Change the foldername to the name of the folder where the data was stored before running the command.
-7. Lastly, run 'autopilo_autobots.py'
+7. Lastly, run 'autopilot_autobots.py'
 
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
