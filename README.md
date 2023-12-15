@@ -1,4 +1,5 @@
 # Team Autobots - Autonomous Navigation Using a Neural Network
+> This report looks much better than the previous version. It is well organized and written, with all the detailed explaination and illustrations. There are places are vague or plague, but is more reader friendly now. My only concern now is related to your "Project Conclusions" section. See the comments in that section for more details. 
 
 ![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) 
 
@@ -61,6 +62,8 @@ This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2
 
 
 ## Project Conclusions
+> *"...we created our own neural network using the _gpiozero_ library that was loosely based on WHAM's original code..."* This is absolutely not correct. Our neural network does not depend on the `gpiozero` library at all. What we have done is upgraded motor and servo driving related codes using that library. IMHO, our work is not "loosely" depending on WHAM's original code. We are still using their code to read and store image and joystick data. The code in `train.py` and `cnn_network.py` was barely changed. I suggest we pay enough attribution to WHAM's work.  
+
 Throughout this project, we built an autonomous robot using the modified RC car and parts left by Team WHAM from last year. First, we completely changed the mounting system for the bot's components to make them accessible and removed extraneous components (specifically the PWM board) to streamline the processes. Next, we created our own neural network using the _gpiozero_ library that was loosely based on WHAM's original code, and tested it in multiple scenarios. Finally, we ran the data collection, training, and navigation processes, and our robot was able to autonomously navigate a full lap of the _CCCS Clipper_ courses independently and win the final race! 
 
 
