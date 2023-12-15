@@ -83,7 +83,9 @@ For our final project, we decided to navigate the CCCS' main entrance, since it 
 > 4. How long it took to finish a lap?
 > 5. Any issues observed?
 
-This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023! We collected 24,834 images. Each image had its respective throttle and steering value. 
+This is the [final navigation](https://youtu.be/jehrM9FV0Xk) from December 12, 2023! We collected 24,834 images. Each image had its respective throttle and steering value. Below is picture of training loss curve for our model
+
+![Loss versus Training Epoch](https://github.com/jmg04006/Autobots/blob/main/media/DonkeyNet_15_epochs_lr_1e_3.png) 
 
 
 ## Project Conclusions
