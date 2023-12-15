@@ -23,21 +23,20 @@ We created our autonomous process using vision-based supervised maching learning
 ![image0 (9)](https://github.com/jmg04006/Autobots/assets/112110593/7134de64-b7ed-44d5-8c11-16c3c8ebdef3)
 
 
-## Repository Contents
+## Project Instructions
 > Make this section as **Project Instructions** section. You'll want to describe the workflow of collecting data, train a model, deploy the autopilot model workflow in this section. And you'll want to keep the instructions up to date.
 > 1. It is essential to introduce the usage of `collect_data.py`, `train.py` and `autopilot.py`. Instructions on other scripts or directories (e.g. `component_tests`, `/data`) are welcome but not necessary.
 > 2. You'll need to clean up this repository. Archive or delete files that no longer using or not compatible. No need to explain the usage of WHAM's code here.
 > 3. You can include technical details here (basically, grab some of the most important techniques from your notes and the wiki pages. e.g. remote access RPi, transfer data, etc.).
-
+To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). 
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
-- [motor.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/motor.py), [servo.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/servo.py), [camera.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera.py), and [joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick.py) are team WHAM's scripts that verify that the individual components work by themselves;
 - [camera_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera_joystick.py), [joystick_servo.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick_servo.py), and [motor_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/motor_joystick.py) are team Autobots scripts to make sure the joytick works with the motor, servo, and camera individually. [servoCalibration.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/servoCalibration.py) is an AutoBot script to make sure the servo is calibrated correctly.;
-- [collect_data.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/collect_data.py) is team WHAM's script that is used to manually drive the vehicle with a wireless controller while collecting steering, throttle, and camera data. [collect_data_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/collect_data_autobots.py) is team Autobots version of collect data; 
+- [collect_data_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/collect_data_autobots.py) is a team Autobot script that allows the robot to be driven manually while collecting throttle, steering, and image data; 
 - a [train.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/train.py) script that trains a CNN using PyTorch and generates a .pth autopilot file containing the trained parameters; 
-- [autopilot.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/autopilot.py) is team WHAM's script that drives the vehicle autonomously using a .pth autopilot file. [autopilot_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/autopilot_autobots.py) is team Autobots version of autopilot using the GPIOZERO library; 
-- and a [cnn_network.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/cnn_network.py) file that defines the neural network architectures accessed by the train.py and autopilot.py scripts.; 
-- [teleop_js.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js.py) is team WHAM's script that integrates motor, servo, and joystick functionality, so the robot can be driven manually. [teleop_js_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js_autobots.py) is team Autobots version of teleop_js.
+- [autopilot_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/autopilot_autobots.py) is a team Autobot script and deploys autopilot. It allows the robot to be driven autonomously by using a trained model to make predictions about throttle and steering values based off of incoming image data; 
+- and a [cnn_network.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/cnn_network.py) file that defines the neural network architectures accessed by the train.py and autopilot.py scripts.;
+-  [teleop_js_autobots.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/teleop_js_autobots.py) is a team Autobot scripts that combines the components test scripts to create script to manually drive the robot.
 
 
 ## Approaches
