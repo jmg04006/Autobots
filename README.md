@@ -1,22 +1,35 @@
 # Vision-Based Autonomous Driving Using Neural Networks
+> All comments are in gray.
 
 ![image0 (8)](https://github.com/jmg04006/Autobots/assets/112110593/9116daa2-f7d0-4688-be8b-25208634bf0b) 
 
-## Project Overview
+## Project Overview 
+> - You have a very good introduction on the backgrounds.
+> - Briefly describe the big picture of the approach. Formats of the data, or how the model is trained is trivial in this section. You can expand the theoretical/technical details in the later section (e.g. in **Approaches**).
+> - State the most notable achievement (which should be a functional protype that completed the *CCCS Clipper* track in the final race).
+
 Our team designed a small autonomous vehicle with the goal of autonomously navigating various mazes set up throughout Lewis Science Center (LSC) and the Conway Corporation Center for Sciences (CCCS). The setup of the tracks is loosely based on two robotics competitions that last year's teams competed in:  (1) the Autonomous Vehicle Challenge at the [National Robotics Challenge](https://www.thenrc.org/) (NRC) and (2) the Intelligent Vehicle Challenge at the annual [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/) (ASGC) Symposium. However, on our version of the tracks, there are multiple different variables at play that will be described below. By the end of next semester, we plan to have the ability to autonomously navigate all five possible tracks.
 
 We created our autonomous process using vision-based supervised maching learning, and we continues the work of Team WHAM from last semester (who took inspiration from the open-source [Donkey Car](https://docs.donkeycar.com/) project. Our robot's navigational process starts with data collected when we drive it around the preset course multiple times. The bot records both images from a mounted camera and the driving command inputs, and this data is used to optimize a convolutional neural network. Then, when we start the vehicle autonomous navigation process, it will take in new images and use the previous data to determine how and where to drive the bot through a course. We are still figuring out how to fine-tune the process, but our bot has been able to effectively navigate the maze.
 
 
 ## Circuit Diagram
+> 1. Add powerbank.
+> 2. The name "Voltage Divider" is misleading, it is just a wire splitter.
+> 3. The DC motor has no polarity difference.
+> 4. It is better to indicate the webcam is connecting to the USB port on RPi.
+> 5. If possible, indicate input/output voltage for each device.
+
 ![image0 (9)](https://github.com/jmg04006/Autobots/assets/112110593/7134de64-b7ed-44d5-8c11-16c3c8ebdef3)
 
 
 ## Repository Contents
+> Make this section as **Project Instructions** section. You'll want to describe the workflow of collecting data, train a model, deploy the autopilot model workflow in this section. And you'll want to keep the instructions up to date.
+> 1. It is essential to introduce the usage of `collect_data.py`, `train.py` and `autopilot.py`. Instructions on other scripts or directories (e.g. `component_tests`, `/data`) are welcome but not necessary.
+> 2. You'll need to clean up this repository. Archive or delete files that no longer using or not compatible. No need to explain the usage of WHAM's code here.
+> 3. You can include technical details here (basically, grab some of the most important techniques from your notes and the wiki pages. e.g. remote access RPi, transfer data, etc.).
+
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
-
-
-
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
 - [motor.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/motor.py), [servo.py](https://github.com/willward20/WHAM/blob/main/train_and_deploy/servo.py), [camera.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera.py), and [joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick.py) are team WHAM's scripts that verify that the individual components work by themselves;
 - [camera_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera_joystick.py), [joystick_servo.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick_servo.py), and [motor_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/motor_joystick.py) are team Autobots scripts to make sure the joytick works with the motor, servo, and camera individually. [servoCalibration.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/servoCalibration.py) is an AutoBot script to make sure the servo is calibrated correctly.;
@@ -28,11 +41,15 @@ This `train_and_deploy` folder contains all of the software for our autonomous v
 
 
 ## Convolutional Neural Network
+> Make this section as **Approaches** section. Use your knowledge learned from deep learning class to explain how the autopilot model works under the hood. Assuming you are explaining everything to high school students. Diagrams and more illustrative methods are welcome here. 
+
 After testing several variations of CNN architectures, we had the most success with Donkey Car's [fastai](https://github.com/autorope/donkeycar/blob/main/donkeycar/parts/fastai.py) architecture (see the "Linear" class). The figure below shows how we modified the CNN structure to accomodate for our input image size and achieve the best results.  Our network architecture has five convolution layers and three fully connected layers. Each image in the network has an input size of 3x120x160 (3 color channels, 120 pixel horizontal width, and 160 pixel vertical height) and an output size of 2 prediction values: steering and throttle. When a dataset is loaded, the recorded images are split into training images (90-95% of the data) and test images (10-5%). During the training process, the network uses the Mean Square Error (MSE) loss function, Adam optimizer, a learning rate of 1E-3, and batch sizes of 125 (train) and 125 (test). The neural network iteratively trains for typically 10-20 epochs. We found the most success when using datasets with a size between 15-20k images.
 
 <img src="https://github.com/willward20/WHAM/blob/main/media/cnn_architecture.png"/>
 
 ## Issues That We Ran Into & Solutions
+> Save this section in the **Appendix** or in the **Project Conclusion** section. The main goal of this document is to help people start a copy of this project. Your stories and learned lessons are critical to you but may not be useful to the followers.  
+
 When we began work on this project, the first aspect that we wanted to change was the design of the base. Previously, all of the electrical components were housed inside of a plastic box, and we had difficulty accessing the parts to make adjustments. Therefore, throughout the semester, we used FreeCAD to create and adjust a palstic base where all of the components are easily accessible. It also served as a great introduction to CAD software as a whole, which is a skill that I will continue to build over the coming semester.
 
 We decided to interact with the steering servo directly instead of using a PWD board. When we made that change, we realized it would be better to use the gpiozero library to steer the robot and control the motor. The previous team used the adafruit library to handle those tanks. When we made the change, we had to update all the python scripts that involved steering and the motor, so they would work with the new library. We kept all the previous team's python scripts in our github in case a future team decides to switch back to the adafruit library. There were component tests to see if the motor, servo, camera, and joystick work properly. We created our own python scripts to ensure that the joystick would work with the motor, servo, and camera. We then created an Autobots version to teleop_js, so we could drive the robot manually. Finally, we made new Autobot versions of the collect_data and autopilot python scripts. We rewrote all the code to work with the gpiozero library using useful pieces of code from the previous team's python scripts. 
@@ -40,6 +57,8 @@ We decided to interact with the steering servo directly instead of using a PWD b
 One final major issue that we encountered towards the end of the semester involved our I2 motors burning out. It would function properly until we executed our data collection program, during which the motor would overheat and start to smoke. This issue occurred twice, and after researching the type of motor, we found out that this was a recurring issue with the part. Therefore, we replaced the motor with a new model (Injora 550) and it now seems to work effectively.
 
 ## Track Possibilities & Conditions
+> This section could be a sub-section in the previous **Approaches** section.
+
 ### Indoor Tracks:
 - **The Basement:** LSC's basement: Large, involves one-direction turns, scenery is repetitive.
 - **Office Connection:** LSC's first floor: Medium-sized, involves one-direction turns, slopes, and a narrow passage.
@@ -55,24 +74,39 @@ For our final project, we decided to navigate the CCCS' main entrance, since it 
 
 
 ## Autonomous Vehicle Performance
+> You can try to answer the following questions:
+> 1. How much data did you collected for the final test?
+> 2. How did your model look like? (size? number of parameters? etc.)
+> 3. How good is your model training?
+> 4. How long it took to finish a lap?
+> 5. Any issues observed?
 Will upload a video after final test!!!
 
 
 ## Project Conclusions
+> Somehow too detailed. Please summarize only the most important milestones in this section. In my opinion, they are:
+> 1. Upgraded hardware configurations (added? subtracted?)
+> 2. Updated software (added? subtracted? modified?)
+> 3. Performance of the final race. 
+
 Throughout this project, we built an autonomous robot using the modified RC car and parts left by Team WHAM from last year. Then, we constructed our own vision-based neural network by taking some of WHAM's original code and instating functions of our own to ensure that the Bluetooth controller and the Raspberry Pi were functioning exactly how we wanted.  To accomplish this, we made sure that the joystick could indepently control the steering and the throttle while taking in data using a camera. Using this process, we would drive the robot around the course multiple times (around 20), to collect data, and then, we'd input the images into our neural network. Lastly, we used the data in conjunction with our _autopilot_ file in order to have the bot autonomously navigate the track. We were able to get the robot to effectively pilot itself through the maze, especially once we fixed our hardware issues.
 
 
 ## Goals for Next Semester
+> Your time in next semester will be even tighter. Set your goals more specific and wisely. In my opinion, a new network structure plus a roll cage would be sufficiently challenging. You've been doing great in this project. It is not a shame to save the future investigations to your successors.
+
 Going into next semester, there are still multiple avenues that we would like to explore with our robot. First, we would like to investigate the lighting factos and their influence on sensors. This could include the time of day and the angle of the sun. These effects have also been explored by team Flashfire this semester, so we shoudl reach out to them and discuss their findings. Additionally, by understanding those factor, we could accomplish our goal of navigating through all five maze options, including the outdoor tracks.
 We would also like to experiment with incorporating new sensors like LIDAR, and we want add new safety features to protect the exposed components. This could include something like a roll cage, or a plastic encasing that goes over the top. Dy doing this, we can ensure that all parts of our robot will be safe in the event of a crash or malfunction. Lastly, we would like to spend more time fine-tuning the neural network and making sure that it runs smoothly and effectively, regardless of the various conditions.
 
 
 ## Important Links 
+> The NRC link is not important any more.
+
 - [National Robotics Challenge](https://www.thenrc.org/)
 - [Arkansas Space Grant Consortium](https://arkansasspacegrant.org/)
 
 
-## Contributors 
+## Contributors
 During our final year at the University of Central Arkansas, we built on the work previously done by Team [WHAM](https://github.com/willward20/WHAM) and, with guidance from Dr. Zhang, made our own adjustments to the bot. We will continue working on this senior design project until May 2024, when we are slated to graduate with B.S. in [Engineering Physics](https://uca.edu/physics/engineering-physics/). 
 - [Josiah Goode](https://github.com/jmg04006)
 - [Masai Olowokere](https://github.com/Masai618)
