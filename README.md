@@ -29,9 +29,11 @@ To get things started, we go to the Autobots Wiki page and find [First Time Driv
 ## Approaches
 > Make this section as **Approaches** section. Use your knowledge learned from deep learning class to explain how the autopilot model works under the hood. Assuming you are explaining everything to high school students. Diagrams and more illustrative methods are welcome here.
 
-Data Collection - Describe what data you are going to collect (image, corresponding throttle/steering values) - Save image to directory and save steering/throttle values in .csv file
-- Image data - feature data
-- Trottle/Steering - target data
+The procedure for our robot's autonomous navigation consists of three primary sub-processes: data collection, neural network training, and autopilot/navigation.
+
+Initially, we collected data using a mounted camera as we drove it around the decided course multiple times (we tended to do about 20 laps on average). As we drove around the area, we collected both image data and the corresponding throttle/steering values. Then, we saved the image data (our _feature data_) to a directory, and the throttle/steering values (our _target data_) into a .csv file.
+
+Next, we trained a neural network using our _train.py_ script. To accomplish this, we executed a __forward pass__ where we used our recorded images to compute predicted throttle and steering values. Second, we used _back propagation_
 
 Training  - Involves forward pass (going to use to compute a prodicted throttle/steering value based on images)
 - Back propagation
@@ -98,6 +100,7 @@ During our final year at the University of Central Arkansas, we built on the wor
 
 
 # Appendix
+
 
 ## Robot Properties
 
