@@ -31,17 +31,16 @@ We created our autonomous process using vision-based supervised maching learning
 
 To get things started, we go to the Autobots Wiki page and find [First Time Driving Instructions](https://github.com/jmg04006/Autobots/wiki/First-Time-Driving-Instructions). That page explains all the steps for pre-installation, collecting data, training a model, and running autopilot. It is a general template for performing those tasks. 
 
-To Autonomoulsy drive the robot with our specific hardware and specifications, we follow the following steps:
+### To train a model and run autopilo: 
 
-> 1. From the host computer, type ssh -X user@192.168.0.111 into the terminal to connect to the RPi remotely.
-> 2. Navigate to the 'train_and_deply' folder.
-> 3. Run 'collect_data_autobots.py' and start collecting data by pressing the X key on the wireless controller.
-> 4. Once data collection is complete, transfer the data to the host computer from the RPi by typing rsync -rv user@192.168.0.111:~/Autobots/train_and_deploy/data/FOLDERNAME ~/Autobots/train_and_deploy/data/ into the host terminal window. FOLDERNAME needs to be changed to the name of the folder where the data is stored. It can be found in Data folder inside the 'train_and_deploy' folder.
-> 5. Go to the 'train.py' script on the host computer and change the Folder name in lines 101 and 102 in the script to the folder name where the data was saved and run the script.
-> 6. After 'train.py' is done and the model is created. Transfer it back to the RPi using and command rsync -rv /home/robotics-j/Autobots/train_and_deploy/data/FOLDERNAME/DonkeyNet_15_epochs_lr_1e_3.pth user@192.168.0.111:~/Autobots/train_and_deploy/models/. Run the command in the host terminal. Change the foldername to the name of the folder where the data was stored before running the command.
-> 7. Lastly, run 'autopilo_autobots.py'
+1. From the host computer, type ssh -X user@192.168.0.111 into the terminal to connect to the RPi remotely.
+2. Navigate to the 'train_and_deply' folder.
+3. Run 'collect_data_autobots.py' and start collecting data by pressing the X key on the wireless controller.
+4. Once data collection is complete, transfer the data to the host computer from the RPi by typing rsync -rv user@192.168.0.111:~/Autobots/train_and_deploy/data/FOLDERNAME ~/Autobots/train_and_deploy/data/ into the host terminal window. FOLDERNAME needs to be changed to the name of the folder where the data is stored. It can be found in Data folder inside the 'train_and_deploy' folder.
+5. Go to the 'train.py' script on the host computer and change the Folder name in lines 101 and 102 in the script to the folder name where the data was saved and run the script.
+6. After 'train.py' is done and the model is created. Transfer it back to the RPi using and command rsync -rv /home/robotics-j/Autobots/train_and_deploy/data/FOLDERNAME/DonkeyNet_15_epochs_lr_1e_3.pth user@192.168.0.111:~/Autobots/train_and_deploy/models/. Run the command in the host terminal. Change the foldername to the name of the folder where the data was stored before running the command.
+7. Lastly, run 'autopilo_autobots.py'
 
-# Instructions to Connect to RPi, Collect Data, Train a 
 This `train_and_deploy` folder contains all of the software for our autonomous vehicle, including:
 - a [config.json](https://github.com/willward20/WHAM/blob/main/train_and_deploy/config.json) file that limits the vehicle's maximum throttle and defines the vehicle's steering trim;
 - [camera_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/camera_joystick.py), [joystick_servo.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/joystick_servo.py), and [motor_joystick.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/motor_joystick.py) are team Autobots scripts to make sure the joytick works with the motor, servo, and camera individually. [servoCalibration.py](https://github.com/jmg04006/Autobots/blob/main/train_and_deploy/components_tests/servoCalibration.py) is an AutoBot script to make sure the servo is calibrated correctly.;
