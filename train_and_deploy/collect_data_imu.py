@@ -124,7 +124,8 @@ try:
             frame = cv.resize(frame, (120, 160))
             cv.imwrite(image_dir + start_time+str(frame_counts)+'.jpg', frame) # changed frame to gray
             # save labels
-            label = [start_time+str(frame_counts)+'.jpg'] + action + list(action2)            with open(label_path, 'a+', newline='') as f:
+            label = [start_time+str(frame_counts)+'.jpg'] + action + list(action2)  
+            with open(label_path, 'a+', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(label)  # write the data
         # monitor frame rate
