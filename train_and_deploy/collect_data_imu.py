@@ -76,9 +76,6 @@ ser = serial.Serial(port, baud, timeout=0.5)
 
 try:
     while(True):
-        #IMU output data
-        datahex = ser.read(33)
-        DueData(datahex)
         #Check to make sure camera is getting images
         ret, frame = cap.read()
         if ret:
@@ -120,6 +117,7 @@ try:
         #Steering and throttle data
         action = [steer, throttle]
         #IMU data
+        datahex = ser.read(33)
         action2 = DueData(datahex)
 
         if is_recording:
