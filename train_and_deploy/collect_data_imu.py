@@ -12,7 +12,7 @@ import csv
 from datetime import datetime
 from gpiozero import LED, AngularServo
 from time import time
-from components_tests.IMU_test import DueData
+from components_tests.IMU_test2 import DueData
 import serial
 
 # load configs
@@ -117,12 +117,16 @@ try:
                     else:
                         print("Stopping data logging")
                     #print(f"action: {action}")
+        #Steering and throttle data
         action = [steer, throttle]
+        #IMU data
+        action2 = DueData(datahex)
+
         if is_recording:
             frame = cv.resize(frame, (120, 160))
             cv.imwrite(image_dir + start_time+str(frame_counts)+'.jpg', frame) # changed frame to gray
             # save labels
-            label = [start_time+str(frame_counts)+'.jpg'] + action
+            label = [start_time+str(frame_counts)+'.jpg'] + action + action2
             with open(label_path, 'a+', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(label)  # write the data
