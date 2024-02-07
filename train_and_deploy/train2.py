@@ -1,4 +1,6 @@
 
+
+
 # Train an autopilot for autonomous ground vehicle using
 # convolutional neural network and labeled images. 
 
@@ -38,10 +40,14 @@ class CustomImageDataset(Dataset):
         image = cv.imread(img_path, cv.IMREAD_COLOR)
         steering = self.img_labels.iloc[idx, 1].astype(np.float32)
         throttle = self.img_labels.iloc[idx, 2].astype(np.float32)
+        linear_acc_x_axis = self.img_labels.iloc[idx, 3].astype(np.float32)
+        linear_acc_y_axis = self.img_labels.iloc[idx, 4].astype(np.float32)
+        angular_vel_z_axis = self.img_labels.iloc[idx, 5].astype(np.float32)
+        angle_z_axis = self.img_labels.iloc[idx, 6].astype(np.float32)
        
         if self.transform:
             image = self.transform(image)
-        return image.float(), steering, throttle
+        return image.float(), linear_acc_x_axis, linear_acc_y_axis, angular_vel_z_axis, angle_z_axis, steering, throttle
 
 
 
