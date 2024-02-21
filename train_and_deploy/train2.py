@@ -14,7 +14,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset, random_split
 from torchvision import transforms
 import matplotlib.pyplot as plt
-import cnn_network
+from cnn_network import AutoBotNet
 import cv2 as cv
 
 
@@ -44,10 +44,11 @@ class CustomImageDataset(Dataset):
         linear_acc_y_axis = self.img_labels.iloc[idx, 4].astype(np.float32)
         angular_vel_z_axis = self.img_labels.iloc[idx, 5].astype(np.float32)
         angle_z_axis = self.img_labels.iloc[idx, 6].astype(np.float32)
+        imu_data = np.array([linear_acc_x_axis, linear_acc_y_axis, angular_vel_z_axis, angle_z_axis])
        
         if self.transform:
             image = self.transform(image)
-        return image.float(), linear_acc_x_axis, linear_acc_y_axis, angular_vel_z_axis, angle_z_axis, steering, throttle
+        return image.float(), imu_data, steering, throttle
 
 
 
@@ -59,13 +60,13 @@ def train(dataloader, model, loss_fn, optimizer):
     model.train()
     epoch_loss = 0.0
 
-    for batch, (image, steering, throttle) in enumerate(dataloader):
+    for batch, (image, imu_data,  steering, throttle) in enumerate(dataloader):
         # Combine steering and throttle into one tensor (2 columns, X rows)
         target = torch.stack((steering, throttle), -1) 
-        X, y = image.to(DEVICE), target.to(DEVICE)
+        X, X1, y = image.to(DEVICE), imu_data.to(DEVICE), target.to(DEVICE)
 
         # Compute prediction error
-        pred = model(X)  # forward propagation
+        pred = model(X, X1)  # forward propagation
         batch_loss = loss_fn(pred, y)  # compute loss
         optimizer.zero_grad()  # zero previous gradient
         batch_loss.backward()  # back propagatin
@@ -88,11 +89,11 @@ def test(dataloader, model, loss_fn):
     model.eval()
     test_loss = 0.0
     with torch.no_grad():
-        for image, steering, throttle in dataloader:
+        for image, imu_data, steering, throttle in dataloader:
             #Combine steering and throttle into one tensor (2 columns, X rows)
             target = torch.stack((steering, throttle), -1) 
-            X, y = image.to(DEVICE), target.to(DEVICE)
-            pred = model(X)
+            X, X1, y = image.to(DEVICE), imu_data.to(DEVICE), target.to(DEVICE)
+            pred = model(X, X1)
             test_loss += loss_fn(pred, y).item()
     test_loss /= num_batches
     print(f"Test Error: {test_loss:>8f} \n")
@@ -105,8 +106,8 @@ def test(dataloader, model, loss_fn):
 if __name__ == '__main__':
 
     # Create a dataset
-    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_12_15_14/labels.csv"  # the name of the csv file
-    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2023_12_12_15_14/images"  # the name of the folder with all the images in it
+    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2024_01_31_16_31/labels.csv"  # the name of the csv file
+    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2024_01_31_16_31/images"  # the name of the folder with all the images in it
     collected_data = CustomImageDataset(annotations_file, img_dir)
     print("data length: ", len(collected_data))
 
@@ -122,14 +123,14 @@ if __name__ == '__main__':
     test_dataloader = DataLoader(test_data, batch_size=125)
 
 
-    # Initialize the model
-    # Models that train well:
-    #     lr = 0.001, epochs = 10
-    #     lr = 0.0001, epochs = 15 (epochs = 20 might also work)
-    model = cnn_network.DonkeyNet().to(DEVICE) # choose the architecture class from cnn_network.py
+    # # Initialize the model
+    # # Models that train well:
+    # #     lr = 0.001, epochs = 10
+    # #     lr = 0.0001, epochs = 15 (epochs = 20 might also work)
+    model = AutoBotNet().to(DEVICE) # choose the architecture class from cnn_network.py
     loss_fn = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr= 0.001)
-    epochs = 15
+    epochs = 2
 
     # Optimize the model
     train_loss = []
@@ -164,13 +165,13 @@ if __name__ == '__main__':
     plt.plot(epochs_array, test_loss, '--', color='orange', label='Testing Loss')
     axs.set_ylabel('Loss')
     axs.set_xlabel('Training Epoch')
-    axs.set_title('DonkeyNet 15 Epochs lr=1e-3')
+    axs.set_title('AutoBotNet 15 Epochs lr=1e-3')
     axs.legend()
     # fig.savefig('/home/robotics-j/Autobots/train_and_deploy/data/2023_10_10_15_44/DonkeyNet_15_epochs_lr_1e_3.png')
-    fig.savefig(os.path.join(os.path.dirname(img_dir),'DonkeyNet_15_epochs_lr_1e_3.png'))
+    fig.savefig(os.path.join(os.path.dirname(img_dir),'AutoBotNet_15_epochs_lr_1e_3.png'))
 
     # Save the model
-    torch.save(model.state_dict(), os.path.join(os.path.dirname(img_dir),"DonkeyNet_15_epochs_lr_1e_3.pth"))
+    torch.save(model.state_dict(), os.path.join(os.path.dirname(img_dir),"AutoBotNet_15_epochs_lr_1e_3.pth"))
 
 
     
