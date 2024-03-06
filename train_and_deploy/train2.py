@@ -106,8 +106,8 @@ def test(dataloader, model, loss_fn):
 if __name__ == '__main__':
 
     # Create a dataset
-    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2024_01_31_16_31/labels.csv"  # the name of the csv file
-    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2024_01_31_16_31/images"  # the name of the folder with all the images in it
+    annotations_file = "/home/robotics-j/Autobots/train_and_deploy/data/2024_02_21_15_55/labels.csv"  # the name of the csv file
+    img_dir = "/home/robotics-j/Autobots/train_and_deploy/data/2024_02_21_15_55/images"  # the name of the folder with all the images in it
     collected_data = CustomImageDataset(annotations_file, img_dir)
     print("data length: ", len(collected_data))
 
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     model = AutoBotNet().to(DEVICE) # choose the architecture class from cnn_network.py
     loss_fn = nn.MSELoss()
     optimizer = torch.optim.Adam(model.parameters(), lr= 0.001)
-    epochs = 2
+    epochs = 1
 
     # Optimize the model
     train_loss = []
