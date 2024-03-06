@@ -99,8 +99,9 @@ try:
         #IMU data
         datahex = ser.read(33)
         imu_data = DueData(datahex)
+        imu_data_tensor = torch.tensor(imu_data)
         #Prediction
-        pred_steer, pred_throttle = model(img_tensor[None, :]).squeeze()
+        pred_steer, pred_throttle = model(img_tensor[None, :], imu_data_tensor[None, :]).squeeze()
         steer = float(pred_steer)
         throttle = float(pred_throttle)
 
