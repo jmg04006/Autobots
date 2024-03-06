@@ -15,6 +15,8 @@ from time import time
 import torch
 from torchvision import transforms
 import cnn_network
+from components_tests.IMU_test2 import DueData
+import serial
 
 # load configs
 config_path = os.path.join(sys.path[0], "config.json")
@@ -74,6 +76,10 @@ for i in reversed(range(60)):  # warm up camera
 start_stamp = time()
 ave_frame_rate = 0.
 start_time=datetime.now().strftime("%Y_%m_%d_%H_%M_")
+#IMU startup variables
+port = '/dev/ttyUSB0' # USB serial port 
+baud = 9600   # Same baud rate as the INERTIAL navigation module
+ser = serial.Serial(port, baud, timeout=0.5)
 try:
     while(True):
         #Check to make sure camera is getting images
@@ -87,8 +93,13 @@ try:
             sys.exit()
         #Main program
         # predict steer and throttle
+        #image data
         image = cv.resize(frame, (120, 160))
         img_tensor = to_tensor(image)
+        #IMU data
+        datahex = ser.read(33)
+        imu_data = DueData(datahex)
+        #Prediction
         pred_steer, pred_throttle = model(img_tensor[None, :]).squeeze()
         steer = float(pred_steer)
         throttle = float(pred_throttle)
