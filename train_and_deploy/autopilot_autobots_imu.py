@@ -5,6 +5,7 @@ from pygame import event, display, joystick
 from gpiozero import PhaseEnableMotor
 import sys
 import os
+import numpy as np
 import cv2 as cv
 from gpiozero import LED
 import json
@@ -109,9 +110,9 @@ try:
         if (throttle < 0.05 and throttle > -0.05):
             motor.stop()
         elif (throttle > 0.05):
-            motor.forward(throttle * throttle_lim)
+            motor.forward(np.clip(throttle * throttle_lim, 0, 1))
         elif (throttle < -0.05):
-            motor.backward(-throttle * throttle_lim)
+            motor.backward(-np.clip(throttle * throttle_lim, -1, 0))
         #Conditions for steering the servo
         ang = steering_center + steer * steering_range
         if ang > 90: 
