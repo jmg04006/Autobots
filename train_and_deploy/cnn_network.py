@@ -5,51 +5,6 @@ import torch.nn as nn
 import torch
 import torch.nn.functional as F
 
-
-class cnn_network(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.conv1 = nn.Conv2d(3,6,3)
-        self.conv2 = nn.Conv2d(6,12,3)
-        self.fc1 = nn.Linear(3*60*80, 120) # most recent downstairs test was 3*640*480
-        self.fc2 = nn.Linear(120,84)
-        self.fc3 = nn.Linear(84,2)
-
-
-    def forward(self, x):
-        x = torch.flatten(x, 1)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
-
-
-
-
-class cnn_network(nn.Module):
-
-    # Define CNN Architecture
-
-    def __init__(self):
-        
-        super().__init__()
-
-        self.conv1 = nn.Conv2d(3, 6, 5) # (300 - 5 + 0) / 1 + 1 = 296 --> 6 x 296 x 296
-        self.conv2 = nn.Conv2d(6, 12, 5) # (296 - 5) + 1 = 292 --> 12 x 292 x 292
-        self.fc1 = nn.Linear(12*292*292, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 2)
-
-    def forward(self, x): # this defines the order that layers are executed
-        x = F.relu(self.conv1(x)) # conv1 --> relu activation
-        x = F.relu(self.conv2(x)) # conv2 --> relu activation
-        x = torch.flatten(x, 1)   # flattens tensor, except the batch dimension
-        x = F.relu(self.fc1(x))   # fc1 --> relu activation
-        x = F.relu(self.fc2(x))   # fc2 --> relu activation
-        x = self.fc3(x)           # fc3 --> two outputs (steering, throttle)
-        return x
-
-
 # Dokney docs --> parts --> keras and fastai (uses PyTorch)
 # donkeycar (github) --> donkeycar --> parts --> keras.py and fastai.py (try fastai first)
 # https://github.com/autorope/donkeycar/blob/main/donkeycar/parts/fastai.py
