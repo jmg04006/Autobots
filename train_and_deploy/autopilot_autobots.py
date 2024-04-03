@@ -43,7 +43,7 @@ tail_led = LED(12)
 #Load the model
 model_path = os.path.join(sys.path[0], 'models', 'DonkeyNet_15_epochs_lr_1e_3.pth')
 to_tensor = transforms.ToTensor()
-model = cnn_network.AutoBotNet()
+model = cnn_network.DonkeyNetNet()
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 # create data storage
 image_dir = os.path.join(sys.path[0], 'data', datetime.now().strftime("%Y_%m_%d_%H_%M"), 'images/')
